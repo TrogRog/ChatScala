@@ -15,41 +15,24 @@ import java.net.URL
 import java.util.ResourceBundle
 
 
-class MyChatController extends Application {
-  @throws[IOException]
-  override def start(primaryStage: Stage): Unit = {
-    val loader = new FXMLLoader(getClass().getResource("/TestChat.fxml"))
-    //val loader = new FXMLLoader(classOf[MyChatController].getResource("TestChat.fxml"))
-    val scene = new Scene(loader.load, 700, 400)
-    primaryStage.setTitle("MyChat")
-    primaryStage.setScene(scene)
-    primaryStage.show()
+class MyChatController {
+  /*val config = ConfigFactory.load("application.conf")
+ val system = ActorSystem("system", config)
+ system.actorOf(Props[SimpleClusterListener], "SimpleClusterListener")*/
 
+ /* startup(Seq("2551"))
 
-
-
-    /*val config = ConfigFactory.load("application.conf")
-    val system = ActorSystem("system", config)
-    system.actorOf(Props[SimpleClusterListener], "SimpleClusterListener")*/
-
-    startup(Seq("2551"))
-
-    def startup(port: Seq[String]): Unit = {
-      val config = ConfigFactory.parseString(
-        s"""
+  private def startup(port: Seq[String]): Unit = {
+    val config = ConfigFactory.parseString(
+      s"""
             akka.remote.netty.tcp.port=$port
             """).withFallback(ConfigFactory.load())
 
-      // Create an Akka system
-      val system = ActorSystem("ClusterSystem", config)
-      // Create an actor that handles cluster domain events
-      system.actorOf(Props[SimpleClusterListener], name = "clusterListener")
-    }
-    def ded(): Unit = {
-
-    }
-  }
-
+    // Create an Akka system
+    val system = ActorSystem("ClusterSystem", config)
+    // Create an actor that handles cluster domain events
+    system.actorOf(Props[SimpleClusterListener], name = "clusterListener")
+  }*/
   @FXML private val resources: ResourceBundle = null
   @FXML private val location: URL = null
   //@FXML private val TextField = readLine()
@@ -62,5 +45,9 @@ class MyChatController extends Application {
   @FXML private[chat] def initialize(): Unit = {
   }
 
-
 }
+
+
+
+
+

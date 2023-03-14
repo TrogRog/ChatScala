@@ -18,9 +18,10 @@ class LogController extends Application {
   override def start(stage: Stage): Unit = {
     val fxmlLoader = new FXMLLoader(classOf[LogController].getResource("log.fxml"))
     val scene = new Scene(fxmlLoader.load, 700, 400)
+    val controller: LogController = fxmlLoader.getController()
     stage.setTitle("MyChat")
     stage.setScene(scene)
-    stage.show()
+    stage.show
 
 
   }
