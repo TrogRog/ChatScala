@@ -17,12 +17,15 @@ import java.util.ResourceBundle
 
 class MyChatController extends Application {
   @throws[IOException]
-  override def start(stage: Stage): Unit = {
-    val fxmlLoader = new FXMLLoader(classOf[MyChatController].getResource("TestChat.fxml"))
-    val scene = new Scene(fxmlLoader.load, 700, 400)
-    stage.setTitle("MyChat")
-    stage.setScene(scene)
-    stage.show()
+  override def start(primaryStage: Stage): Unit = {
+    val loader = new FXMLLoader(getClass().getResource("/TestChat.fxml"))
+    //val loader = new FXMLLoader(classOf[MyChatController].getResource("TestChat.fxml"))
+    val scene = new Scene(loader.load, 700, 400)
+    primaryStage.setTitle("MyChat")
+    primaryStage.setScene(scene)
+    primaryStage.show()
+
+
 
 
     /*val config = ConfigFactory.load("application.conf")

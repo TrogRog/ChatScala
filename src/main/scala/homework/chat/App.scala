@@ -14,9 +14,6 @@ import javafx.stage.Stage
 object App {
   def main(args: Array[String]):Unit= {
     Application.launch(classOf[LogController], args: _*)
+
   }
-
-
-
-
 }
