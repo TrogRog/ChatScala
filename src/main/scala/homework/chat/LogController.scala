@@ -34,7 +34,7 @@ class LogController{
     stage.setScene(scene)
     stage.show
     ChatC.startup(25251)
-    ChatC.startup(25252)
+
 
 
   }
