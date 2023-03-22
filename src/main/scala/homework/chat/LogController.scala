@@ -33,10 +33,10 @@ class LogController{
     stage.setTitle("MyChat")
     stage.setScene(scene)
     stage.show
-    //ChatC.startup(25251)
 
-    //ChatCluster.startup(25251)
-    //ChatCluster.startup(25252)
+
+    ChatCluster.startup(25251)
+    ChatCluster.startup(25252)
     ChatCluster.startup(0)
 
 
