@@ -10,7 +10,7 @@ import javafx.scene.Scene
 import javafx.stage.Stage
 
 
-object App {
+object App{
   def main(args: Array[String]): Unit = {
     Application.launch(classOf[App], args: _*)
   }
@@ -18,7 +18,7 @@ object App {
 
 class App extends Application {
   override def start(stage: Stage): Unit = {
-    val fxmlLoader = new FXMLLoader(classOf[LogController].getResource("log.fxml"))
+    val fxmlLoader = new FXMLLoader(classOf[LogController].getResource("/log.fxml"))
     val scene = new Scene(fxmlLoader.load, 700, 400)
     val controller: LogController = fxmlLoader.getController
     stage.setTitle("MyChat")

@@ -24,7 +24,7 @@ object ChatCluster {
     val config = ConfigFactory.parseString(
       s"""
       akka.remote.artery.canonical.port=$port
-      """).withFallback(ConfigFactory.load())
+      """).withFallback(ConfigFactory.load("application"))
 
     // Create an Akka system
     ActorSystem[Nothing](RootBehavior(), "ClusterSystem", config)

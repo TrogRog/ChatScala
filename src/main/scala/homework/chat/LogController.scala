@@ -28,7 +28,7 @@ class LogController{
   @FXML private[chat] def authLogButton(event: ActionEvent): Unit = {
 
     val stage = new Stage
-    val fxmlLoader = new FXMLLoader(classOf[MyChatController].getResource("MyChat.fxml"))
+    val fxmlLoader = new FXMLLoader(classOf[MyChatController].getResource("/MyChat.fxml"))
     val scene = new Scene(fxmlLoader.load, 700, 400)
     stage.setTitle("MyChat")
     stage.setScene(scene)
