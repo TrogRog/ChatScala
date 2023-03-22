@@ -1,5 +1,7 @@
 package homework.chat
 
+
+
 import java.net.URL
 import java.util.ResourceBundle
 import javafx.fxml.FXML
@@ -13,18 +15,9 @@ import javafx.stage.Stage
 
 
 
-class LogController extends Application {
-
-  override def start(stage: Stage): Unit = {
-    val fxmlLoader = new FXMLLoader(classOf[LogController].getResource("log.fxml"))
-    val scene = new Scene(fxmlLoader.load, 700, 400)
-    val controller: LogController = fxmlLoader.getController()
-    stage.setTitle("MyChat")
-    stage.setScene(scene)
-    stage.show
+class LogController{
 
 
-  }
 
   @FXML private val resources: ResourceBundle = null
   @FXML private val location: URL = null
@@ -35,17 +28,22 @@ class LogController extends Application {
   @FXML private[chat] def authLogButton(event: ActionEvent): Unit = {
 
     val stage = new Stage
-    val fxmlLoader = new FXMLLoader(classOf[MyChatController].getResource("TestChat.fxml"))
+    val fxmlLoader = new FXMLLoader(classOf[MyChatController].getResource("MyChat.fxml"))
     val scene = new Scene(fxmlLoader.load, 700, 400)
     stage.setTitle("MyChat")
     stage.setScene(scene)
     stage.show
+    ChatC.startup(25251)
+    ChatC.startup(25252)
+
+
   }
 
   @FXML private[chat] def initialize(): Unit = {
 
   }
 }
+
 
 
 
