@@ -36,6 +36,7 @@ class LogController{
     var po: String = logSeedNode.getText
     //ChatC.startup(logSeedNode)
     println(s"$po")
+    //ChatCluster.run()
     ChatCluster.startup(s"$po")
     //ChatCluster.startup(25252)
     //ChatCluster.startup(0)
