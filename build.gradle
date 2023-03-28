@@ -48,6 +48,7 @@ dependencies {
     implementation "com.typesafe.akka:akka-serialization-jackson_${versions.ScalaBinary}"
 
     implementation "com.outr:scribe-slf4j_${versions.ScalaBinary}:3.10.1"
+
     //implementation platform("com.typesafe.akka:akka-bom_${versions.ScalaBinary}:2.6.15")
 
 //    testImplementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.2'
