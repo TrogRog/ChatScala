@@ -33,13 +33,9 @@ class LogController{
     stage.setTitle("MyChat")
     stage.setScene(scene)
     stage.show
-    var po: String = logSeedNode.getText
-    //ChatC.startup(logSeedNode)
-    println(s"$po")
-    //ChatCluster.run()
-    ChatCluster.startup(s"$po")
-    //ChatCluster.startup(25252)
-    //ChatCluster.startup(0)
+    val portSt: Int = logSeedNode.getText.toInt
+    ChatCluster.run(portSt)
+
 
 
   }

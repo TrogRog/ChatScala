@@ -1,9 +1,10 @@
 package homework.chat
 
 
+import akka.actor.{Address, AddressFromURIString}
 import akka.actor.typed.{ActorSystem, Behavior}
 import akka.actor.typed.scaladsl.Behaviors
-import akka.cluster.typed.Cluster
+import akka.cluster.typed.{Cluster, JoinSeedNodes}
 import com.typesafe.config.ConfigFactory
 
 
@@ -21,38 +22,21 @@ object ChatCluster {
     }
   }
 
-  def startup(port: String): Unit = {
+  def startup(port: Int): Unit = {
     // Override the configuration of the port
     val config = ConfigFactory.parseString(
       s"""
       akka.remote.artery.canonical.port=$port
       """).withFallback(ConfigFactory.load("application"))
-    /*val config = ConfigFactory.parseString(
-      s"""
-  akka.remote.artery.canonical.hostname = 127.0.0.1
-  akka.remote.artery.canonical.port=$port
-  """).withFallback(ConfigFactory.load("application"))*/
+
     // Create an Akka system
     ActorSystem[Nothing](RootBehavior(), "ClusterSystem", config)
   }
 
- /* def startup(port: String): Unit = {
-    // Override the configuration of the port and role
-    val config = ConfigFactory
-      .parseString(
-        s"""
-      akka.remote.artery.canonical.port=$port
-      """)
-      .withFallback(ConfigFactory.load("application"))
+  def run(port:Int): Unit = {
+    // start cluster
 
-    val rootBehavior = Behaviors.setup[Nothing] { ctx =>
-      val cluster = Cluster(ctx.system)
+    startup(port)
 
-
-      Behaviors.empty
-    }
-    actorSystem = ActorSystem[Nothing](rootBehavior, "ClusterSystem", config)
-  }*/
-
-
+  }
 }
