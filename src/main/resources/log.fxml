@@ -10,7 +10,7 @@
    <children>
       <AnchorPane layoutY="78.0" prefHeight="323.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">
          <children>
-            <TextField fx:id="name" alignment="CENTER" layoutX="258.0" layoutY="51.0" promptText="Имя" />
+            <TextField fx:id="nameLog" alignment="CENTER" layoutX="258.0" layoutY="51.0" promptText="Имя" />
             <TextField fx:id="logSeedNode" alignment="CENTER" layoutX="259.0" layoutY="137.0" promptText="25251" text="25251" />
             <Label layoutX="278.0" layoutY="14.0" prefHeight="37.0" prefWidth="134.0" text="Введите Имя">
                <font>

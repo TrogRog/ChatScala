@@ -1,42 +1,43 @@
 package homework.chat
 
 
-import akka.actor.{Address, AddressFromURIString}
-import akka.actor.typed.{ActorSystem, Behavior}
+
+
+import akka.actor.typed.{ActorRef, ActorSystem}
 import akka.actor.typed.scaladsl.Behaviors
-import akka.cluster.typed.{Cluster, JoinSeedNodes}
 import com.typesafe.config.ConfigFactory
+import homework.chat.ChatDomain._
+
+
 
 
 object ChatCluster {
 
+
   var memberName: String = "Some"
-  var actorSystem: ActorSystem[Nothing] = _
+  var actorSystem : ActorSystem[AnyRef] = _
+  var nameVisitor: ActorRef[Command] = _
+  var nameV: String = _
 
-  object RootBehavior {
-    def apply(): Behavior[Nothing] = Behaviors.setup[Nothing] { context =>
-      // Create an actor that handles cluster domain events
-      context.spawn(ClusterListener(), "ClusterListener")
 
-      Behaviors.empty
-    }
+   def startup(nickname: String, port: Int)  :Unit = {
+    val config = ConfigFactory.parseString(s"akka.remote.artery.canonical.port=$port").withFallback(ConfigFactory.load("application"))
+
+    actorSystem = ActorSystem[AnyRef](Behaviors.empty, "ClusterSystem", config)
+    val chatActor = actorSystem.systemActorOf(ChatBehavior(nickname, port), "chatActor")
+     nameV = nickname
+
+    /*scala.io.Source.stdin.getLines().foreach { line =>
+      chatActor ! UserMessage(line)
+
+    }*/
   }
 
-  def startup(port: Int): Unit = {
-    // Override the configuration of the port
-    val config = ConfigFactory.parseString(
-      s"""
-      akka.remote.artery.canonical.port=$port
-      """).withFallback(ConfigFactory.load("application"))
-
-    // Create an Akka system
-    ActorSystem[Nothing](RootBehavior(), "ClusterSystem", config)
-  }
-
-  def run(port:Int): Unit = {
+  def run(name:String ,port:Int): Unit = {
     // start cluster
 
-    startup(port)
+    startup(name ,port)
 
   }
+
 }
