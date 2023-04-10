@@ -7,6 +7,7 @@ import akka.actor.typed.{ActorRef, ActorSystem}
 import akka.actor.typed.scaladsl.Behaviors
 import com.typesafe.config.ConfigFactory
 import homework.chat.ChatDomain._
+import javafx.scene.control.TextArea
 
 
 
@@ -18,7 +19,7 @@ object ChatCluster {
   var actorSystem : ActorSystem[AnyRef] = _
   var nameVisitor: ActorRef[Command] = _
   var nameV: String = _
-
+  var textVis : MyChatController = _
 
    def startup(nickname: String, port: Int)  :Unit = {
     val config = ConfigFactory.parseString(s"akka.remote.artery.canonical.port=$port").withFallback(ConfigFactory.load("application"))
