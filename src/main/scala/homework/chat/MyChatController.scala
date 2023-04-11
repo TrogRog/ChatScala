@@ -16,6 +16,9 @@ import java.util.{Date, ResourceBundle}
 
 
 class MyChatController {
+
+  var textVis : MyChatController = _
+
   @FXML private val resources: ResourceBundle = null
   @FXML private val location: URL = null
   @FXML private var messageVisitor: TextField = _
@@ -25,13 +28,13 @@ class MyChatController {
 
   @FXML private[chat] def sendButton(event: ActionEvent): Unit = {
     val mes = messageVisitor.getText
-    show(nameV, mes)
+    //showV(nameV, mes)
     membersList.foreach(member =>
        member ! ChatMessage(nameV, mes))
     messageVisitor.setText("")
   }
 
-  def show(nickname:String, message: String): Unit = {
+  def showV(nickname:String, message: String): Unit = {
 
     val date = new Date
     val df = new SimpleDateFormat("dd-MM-yyyy HH:mm")

@@ -16,6 +16,8 @@ object ChatDomain {
 }
 
 object ChatBehavior {
+
+  var textVis : MyChatController = _
   private case class ActorState(nickname: String, port: Int, members: Set[ActorRef[Command]])
 
   val ChatServiceKey: ServiceKey[Command] = ServiceKey[Command]("ChatServiceKey")
@@ -40,7 +42,7 @@ object ChatBehavior {
           resultState = state.copy(members = list.filter(_.ref != ctx.self))
           println(s"List of members(${list.size}) changed: ${list.mkString(", ")}")
         case ChatMessage(nickname, contents) =>
-          //ChatCluster.textVis.show(nickname,contents)
+         // textVis.showV(nickname,contents)
           println(s"$nickname say $contents")
         case m => println(s"Skip: $m")
       }
