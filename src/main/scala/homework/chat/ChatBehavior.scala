@@ -1,6 +1,6 @@
 package homework.chat
 
-import homework.chat.MyChatController
+
 import akka.actor.typed.{ActorRef, Behavior}
 import akka.actor.typed.receptionist.{Receptionist, ServiceKey}
 import akka.actor.typed.scaladsl.{ActorContext, Behaviors}
@@ -13,7 +13,7 @@ object ChatDomain {
 
   case class UserMessage(contents: String) extends Command
 
-  case class EnterRoom(fullAddress: String, nickname: String) extends Command
+  //case class EnterRoom(fullAddress: String, nickname: String) extends Command
 
   case class ListingResponse(listing: Receptionist.Listing) extends Command
 }
@@ -22,7 +22,7 @@ object ChatBehavior {
 
   var textVis: MyChatController = _
 
-  private case class ActorState(nickname: String, port: Int, members: Set[ActorRef[Command]])
+  case class ActorState(nickname: String, port: Int, members: Set[ActorRef[Command]])
 
   val ChatServiceKey: ServiceKey[Command] = ServiceKey[Command]("ChatServiceKey")
   var membersList: Set[ActorRef[Command]] = Set.empty
@@ -35,7 +35,7 @@ object ChatBehavior {
     behavior(ActorState(nickname, port, Set.empty), ctx)
   }
 
-  private def behavior(state: ActorState, ctx: ActorContext[Command]): Behaviors.Receive[Command] =
+  def behavior(state: ActorState, ctx: ActorContext[Command]): Behaviors.Receive[Command] =
     Behaviors.receiveMessage[Command] { message =>
       var resultState = state
       message match {

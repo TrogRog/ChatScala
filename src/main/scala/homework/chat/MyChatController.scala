@@ -1,13 +1,10 @@
 package homework.chat
 
 
-import akka.actor.typed.ActorRef
-import homework.chat.ChatBehavior.membersList
-import homework.chat.ChatCluster.chatActor
-import homework.chat.ChatDomain.{ChatMessage, Command, UserMessage}
+import homework.chat.ChatDomain._
 import javafx.application.Platform
 import javafx.event.ActionEvent
-import javafx.fxml.{FXML, Initializable}
+import javafx.fxml.FXML
 import javafx.scene.control.{ListView, TextArea, TextField}
 
 import java.net.URL
@@ -17,7 +14,6 @@ import java.util.{Date, ResourceBundle}
 
 class MyChatController {
 
-  var textVis: MyChatController = _
 
   @FXML private val resources: ResourceBundle = null
   @FXML private val location: URL = null
@@ -25,13 +21,15 @@ class MyChatController {
   @FXML private var text: TextArea = _
   @FXML private var visitors: ListView[_] = _
 
+  var memberName: String = _
 
   @FXML private[chat] def sendButton(event: ActionEvent): Unit = {
     val mes = messageVisitor.getText
-    //showV(nameV, mes)
-    chatActor ! UserMessage(mes)
+    showV(memberName, mes)
+    ChatCluster.chatActor ! UserMessage(mes)
     messageVisitor.setText("")
-  }
+
+  } 
 
   def showV(nickname: String, message: String): Unit = {
     Platform.runLater(() => {

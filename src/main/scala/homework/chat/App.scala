@@ -32,8 +32,9 @@ class App extends Application {
       stage.setTitle("MyChat")
       stage.setScene(scene)
       stage.show()
+      controller.memberName = credentials.username
+      system = ChatCluster.startup(credentials.username, credentials.port, controller)
 
-      system = ChatCluster.run(credentials.username, credentials.port, controller)
     }
 
 
@@ -44,7 +45,7 @@ class App extends Application {
     Option(system).foreach(_.terminate())
   }
 
-  private def showLoginWindow(): Option[Credentials] = {
+  def showLoginWindow(): Option[Credentials] = {
     val fxmlLoader = new FXMLLoader(classOf[LogController].getResource("/log.fxml"))
     val scene = new Scene(fxmlLoader.load, 700, 400)
     val controller: LogController = fxmlLoader.getController
